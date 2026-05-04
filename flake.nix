@@ -17,7 +17,7 @@
             # RISC-V ISA Simulator
             spike
             # RISC-V Cross Compiler
-            pkgsCross.riscv64.buildPackages.gcc
+            pkgsCross.riscv32.buildPackages.gcc
 
             # Rust toolchain
             rustc

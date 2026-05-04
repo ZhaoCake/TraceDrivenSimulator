@@ -1,2 +1,4 @@
 .direnv/
-test_binary/
+
+
+target/
