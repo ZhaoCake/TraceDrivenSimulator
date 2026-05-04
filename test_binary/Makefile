@@ -1,6 +1,6 @@
 RISCV_GCC = riscv32-unknown-linux-gnu-gcc
 RISCV_OBJDUMP = riscv32-unknown-linux-gnu-objdump
-CFLAGS = -nostdlib -nostartfiles -static -no-pie -march=rv32i -mabi=ilp32
+CFLAGS = -nostdlib -nostartfiles -static -no-pie -march=rv32i -mabi=ilp32 -fno-stack-protector
 LDFLAGS = -T baremetal.ld
 
 all: test_c
@@ -13,9 +13,9 @@ disasm: test_c
 
 trace: test_c
 	spike --isa=rv32i -l --log-commits test_c 2> spike.log
-	./parse_spike_log.py spike.log test_c.trace
+	python3 ./parse_spike_log.py spike.log test_c.trace
 
 clean:
-	rm -f test_c test_addi spike.log *.trace
+	rm -f test_c spike.log *.trace
 
 .PHONY: all disasm trace clean
