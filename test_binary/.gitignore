@@ -1,0 +1,9 @@
+*
+*.*
+!.gitignore
+
+!baremetal.ld
+!crt0.S
+!test_c.c
+!Makefile
+!parse_spike_log.py
