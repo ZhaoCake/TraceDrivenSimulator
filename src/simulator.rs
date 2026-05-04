@@ -24,26 +24,48 @@ impl Simulator {
 
     /// 核心推进函数（前进单个 Trace 指令）
     pub fn step(&mut self, record: &TraceRecord) {
-        self.cycle += 1;
         self.inst_count += 1;
 
         // 指令大类分布统计
         *self.op_stats.entry(record.op_type).or_insert(0) += 1;
         
-        // 预留扩展点:
-        // 在这里进行真正的乱序 / 顺序前递、计分板资源占用的逻辑模拟
-        self.check_dependencies(record);
-        self.simulate_timing(record);
+        // 多周期推演：将指令逐步送入五个阶段进行处理
+        // 后续改为流水线时，可以将这五个阶段操作并行作用于不同的指令
+        self.stage_fetch(record);
+        self.stage_decode(record);
+        self.stage_execute(record);
+        self.stage_memory(record);
+        self.stage_writeback(record);
     }
 
-    /// 微架构依赖检查预留接口（例如寄存器时延标记）
-    fn check_dependencies(&self, _record: &TraceRecord) {
-        // 在这里实现源分发、计分板等逻辑
+    /// 取指阶段 (Instruction Fetch)
+    fn stage_fetch(&mut self, _record: &TraceRecord) {
+        // 在这里预留：依据 PC 抓取指令、模拟 I-Cache 延迟等
+        self.cycle += 1;
     }
 
-    /// 微架构流水线/功能单元资源模拟预留接口
-    fn simulate_timing(&self, _record: &TraceRecord) {
-        // 在这里实现多级流水线的资源占用和访存延迟
+    /// 译码阶段 (Instruction Decode)
+    fn stage_decode(&mut self, _record: &TraceRecord) {
+        // 在这里预留：解析寄存器 rs1/rs2，检查数据相关性等
+        self.cycle += 1;
+    }
+
+    /// 执行阶段 (Execute)
+    fn stage_execute(&mut self, _record: &TraceRecord) {
+        // 在这里预留：进行真正的 ALU 计算、计算分支结果与预测对比等
+        self.cycle += 1;
+    }
+
+    /// 访存阶段 (Memory Access)
+    fn stage_memory(&mut self, _record: &TraceRecord) {
+        // 在这里预留：基于 mem_addr 模拟 D-Cache 延迟、计算访存阻塞等
+        self.cycle += 1;
+    }
+
+    /// 写回阶段 (Write Back)
+    fn stage_writeback(&mut self, _record: &TraceRecord) {
+        // 在这里预留：更新记分板状态，解除结构冒险与数据冒险的标记等
+        self.cycle += 1;
     }
 
     /// 完成执行打印汇总日志
@@ -93,7 +115,7 @@ mod tests {
         }
 
         // 测试基础统计指标
-        assert_eq!(sim.cycle, 3);
+        assert_eq!(sim.cycle, 15);
         assert_eq!(sim.inst_count, 3);
         assert_eq!(*sim.op_stats.get(&OpType::IntAlu).unwrap_or(&0), 2);
         assert_eq!(*sim.op_stats.get(&OpType::Store).unwrap_or(&0), 1);
