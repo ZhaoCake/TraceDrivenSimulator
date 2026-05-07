@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -5 760 396.8" width="760" height="396.8">
+<rect x="-15" y="-5" width="760" height="396.8" fill="#ffffff"/>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#1971c2"/>
+  </marker>
+</defs>
+<rect x="50" y="60" width="170" height="50" rx="8" ry="8" fill="#d3f9d8" fill-opacity="1.0" stroke="#2f9e44" stroke-width="2" />
+<text x="106.2" y="94.6" font-size="16" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">mod.rs</text>
+<rect x="280" y="60" width="170" height="50" rx="8" ry="8" fill="#d0ebff" fill-opacity="1.0" stroke="#1971c2" stroke-width="2" />
+<text x="312.2" y="94.6" font-size="16" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">pipeline.rs</text>
+<rect x="510" y="60" width="170" height="50" rx="8" ry="8" fill="#fff3bf" fill-opacity="1.0" stroke="#e67700" stroke-width="2" />
+<text x="561.4" y="94.6" font-size="16" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">core.rs</text>
+<rect x="280" y="150" width="170" height="50" rx="8" ry="8" fill="#f8f0fc" fill-opacity="1.0" stroke="#9c36b5" stroke-width="2" />
+<text x="326.6" y="184.6" font-size="16" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">tests.rs</text>
+<rect x="25" y="35" width="680" height="200" rx="0" ry="0" fill="#f8f9fa" fill-opacity="0.15" stroke="#868e96" stroke-width="1" />
+<text x="35" y="52" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">src/simulator/</text>
+<line x1="220" y1="85" x2="280" y2="85" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<text x="110.0" y="80.0" font-size="13" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">impl Simulator { stages + forward }</text>
+<line x1="450" y1="85" x2="510" y2="85" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<text x="368.0" y="80.0" font-size="13" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">impl Simulator { lifecycle }</text>
+<line x1="365" y1="110" x2="365" y2="150" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<text x="317.0" y="125.0" font-size="13" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">#[cfg(test)]</text>
+<text x="30" y="274" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">mod.rs -- 状态定义 (Latch + Simulator 结构体)</text>
+<text x="30" y="299" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">pipeline.rs -- 转移规则 (五阶段 + 转发)</text>
+<text x="30" y="324" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">core.rs -- 编排层 (主循环 + 生命周期)</text>
+<text x="30" y="349" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">tests.rs -- 验证 (15 个测试用例)</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -3.0 626.0 364.8" width="626.0" height="364.8">
+<rect x="-10" y="-3.0" width="626.0" height="364.8" fill="#ffffff"/>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#1971c2"/>
+  </marker>
+</defs>
+<rect x="30" y="60" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#495057" stroke-width="2" />
+<text x="61.6" y="88.4" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">周期</text>
+<rect x="110" y="60" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#495057" stroke-width="2" />
+<text x="141.6" y="88.4" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">IF</text>
+<rect x="190" y="60" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#495057" stroke-width="2" />
+<text x="221.6" y="88.4" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">ID</text>
+<rect x="270" y="60" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#495057" stroke-width="2" />
+<text x="301.6" y="88.4" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">EX</text>
+<rect x="350" y="60" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#495057" stroke-width="2" />
+<text x="377.4" y="88.4" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">MEM</text>
+<rect x="430" y="60" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#495057" stroke-width="2" />
+<text x="461.6" y="88.4" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">WB</text>
+<rect x="30" y="100" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#adb5bd" stroke-width="2" />
+<text x="66.4" y="127.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">T</text>
+<rect x="111" y="100" width="78" height="40" rx="8" ry="8" fill="#ffffff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="139.2" y="127.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">add</text>
+<rect x="191" y="100" width="78" height="40" rx="8" ry="8" fill="#ffffff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="222.8" y="127.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">lw</text>
+<rect x="271" y="100" width="78" height="40" rx="8" ry="8" fill="#ffffff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="351" y="100" width="78" height="40" rx="8" ry="8" fill="#ffffff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="431" y="100" width="78" height="40" rx="8" ry="8" fill="#ffffff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="30" y="140" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#adb5bd" stroke-width="2" />
+<text x="59.2" y="167.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">T+1</text>
+<rect x="111" y="140" width="78" height="40" rx="8" ry="8" fill="#ffd8a8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="135.6" y="167.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">[冻结]</text>
+<rect x="191" y="140" width="78" height="40" rx="8" ry="8" fill="#ffd8a8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="215.6" y="167.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">[气泡]</text>
+<rect x="271" y="140" width="78" height="40" rx="8" ry="8" fill="#ffd8a8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="302.8" y="167.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">lw</text>
+<rect x="351" y="140" width="78" height="40" rx="8" ry="8" fill="#ffd8a8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="431" y="140" width="78" height="40" rx="8" ry="8" fill="#ffd8a8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="30" y="180" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#adb5bd" stroke-width="2" />
+<text x="59.2" y="207.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">T+2</text>
+<rect x="111" y="180" width="78" height="40" rx="8" ry="8" fill="#d0ebff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="191" y="180" width="78" height="40" rx="8" ry="8" fill="#d0ebff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="219.2" y="207.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">add</text>
+<rect x="271" y="180" width="78" height="40" rx="8" ry="8" fill="#d0ebff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="295.6" y="207.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">[气泡]</text>
+<rect x="351" y="180" width="78" height="40" rx="8" ry="8" fill="#d0ebff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="382.8" y="207.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">lw</text>
+<rect x="431" y="180" width="78" height="40" rx="8" ry="8" fill="#d0ebff" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="30" y="220" width="80" height="40" rx="8" ry="8" fill="#e9ecef" fill-opacity="1.0" stroke="#adb5bd" stroke-width="2" />
+<text x="59.2" y="247.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">T+3</text>
+<rect x="111" y="220" width="78" height="40" rx="8" ry="8" fill="#d3f9d8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="191" y="220" width="78" height="40" rx="8" ry="8" fill="#d3f9d8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<rect x="271" y="220" width="78" height="40" rx="8" ry="8" fill="#d3f9d8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="299.2" y="247.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">add</text>
+<rect x="351" y="220" width="78" height="40" rx="8" ry="8" fill="#d3f9d8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="375.6" y="247.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">[气泡]</text>
+<rect x="431" y="220" width="78" height="40" rx="8" ry="8" fill="#d3f9d8" fill-opacity="1.0" stroke="transparent" stroke-width="2" />
+<text x="462.8" y="247.2" font-size="12" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">lw</text>
+<line x1="190" y1="55" x2="430" y2="55" stroke="#e03131" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<text x="230.0" y="50.0" font-size="13" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">检测到冒险 → 停顿一周期 → 转发解决</text>
+<text x="30" y="294" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">Load-Use 冒险：当 EX/MEM 中有 Load 尚未取回数据，且 IF/ID 中的指令依赖其结果</text>
+<text x="30" y="319" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">停顿动作：stall=true(冻结IF) → de_latch=None(ID插气泡) → 下周期stall=false(解除)</text>
+</svg>

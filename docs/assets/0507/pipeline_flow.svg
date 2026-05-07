@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 880 346.8" width="880" height="346.8">
+<rect x="-10" y="-10" width="880" height="346.8" fill="#ffffff"/>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#1971c2"/>
+  </marker>
+</defs>
+<rect x="115" y="170" width="70" height="25" rx="8" ry="8" fill="#f1f3f5" fill-opacity="1.0" stroke="#868e96" stroke-width="2" />
+<text x="143.4" y="189.1" font-size="11" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">FD</text>
+<rect x="285" y="170" width="70" height="25" rx="8" ry="8" fill="#f1f3f5" fill-opacity="1.0" stroke="#868e96" stroke-width="2" />
+<text x="313.4" y="189.1" font-size="11" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">DE</text>
+<rect x="455" y="170" width="70" height="25" rx="8" ry="8" fill="#f1f3f5" fill-opacity="1.0" stroke="#868e96" stroke-width="2" />
+<text x="483.4" y="189.1" font-size="11" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">EM</text>
+<rect x="625" y="170" width="70" height="25" rx="8" ry="8" fill="#f1f3f5" fill-opacity="1.0" stroke="#868e96" stroke-width="2" />
+<text x="653.4" y="189.1" font-size="11" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">MW</text>
+<rect x="30" y="100" width="120" height="50" rx="8" ry="8" fill="#fff3bf" fill-opacity="1.0" stroke="#e67700" stroke-width="2" />
+<text x="79.2" y="135.8" font-size="18" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">IF</text>
+<rect x="200" y="100" width="120" height="50" rx="8" ry="8" fill="#d0ebff" fill-opacity="1.0" stroke="#1971c2" stroke-width="2" />
+<text x="249.2" y="135.8" font-size="18" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">ID</text>
+<rect x="370" y="100" width="120" height="50" rx="8" ry="8" fill="#d3f9d8" fill-opacity="1.0" stroke="#2f9e44" stroke-width="2" />
+<text x="419.2" y="135.8" font-size="18" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">EX</text>
+<rect x="540" y="100" width="120" height="50" rx="8" ry="8" fill="#f8f0fc" fill-opacity="1.0" stroke="#9c36b5" stroke-width="2" />
+<text x="583.8" y="135.8" font-size="18" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">MEM</text>
+<rect x="710" y="100" width="120" height="50" rx="8" ry="8" fill="#ffd8a8" fill-opacity="1.0" stroke="#e8590c" stroke-width="2" />
+<text x="759.2" y="135.8" font-size="18" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">WB</text>
+<line x1="150" y1="125" x2="150" y2="182" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<line x1="320" y1="125" x2="320" y2="182" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<line x1="490" y1="125" x2="490" y2="182" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<line x1="660" y1="125" x2="660" y2="182" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<line x1="150" y1="182" x2="200" y2="125" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<line x1="320" y1="182" x2="370" y2="125" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<line x1="490" y1="182" x2="540" y2="125" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<line x1="660" y1="182" x2="710" y2="125" stroke="#1971c2" stroke-width="2"  marker-end="url(#arrowhead)" opacity="1.0"/>
+<text x="30" y="52" font-size="22" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">经典五级流水线 — 数据流与锁存器</text>
+<text x="30" y="244" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">→ 每周期数据沿 IF → ID → EX → MEM → WB 前进一级</text>
+<text x="30" y="269" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">→ 锁存器 (Latch) 是阶段间的唯一接口</text>
+<text x="30" y="294" font-size="14" font-family="Comic Sans MS, sans-serif" fill="#1e1e1e" text-anchor="start" opacity="1.0">→ 逆向执行 (WB→MEM→EX→ID→IF) 确保转发在同一周期生效</text>
+</svg>
