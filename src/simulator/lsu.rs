@@ -17,13 +17,17 @@ use crate::trace::TraceRecord;
 #[derive(Debug, Clone)]
 pub struct Lsu {
     /// 访存延迟（周期数）
+    #[allow(dead_code)]
     pub latency: u32,
     /// LSU 是否每周期可接收新请求
+    #[allow(dead_code)]
     pub pipelined: bool,
     /// LSU 变为空闲的周期号（非流水化时）
+    #[allow(dead_code)]
     busy_until: u64,
 }
 
+#[allow(dead_code)]
 impl Lsu {
     /// 创建新的 LSU。
     ///

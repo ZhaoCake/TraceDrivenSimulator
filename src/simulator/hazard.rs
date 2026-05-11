@@ -16,6 +16,7 @@ pub enum ForwardSource {
 
 impl ForwardSource {
     /// 从转发源中提取实际值。
+    #[allow(dead_code)]
     pub fn value(&self) -> u64 {
         match *self {
             ForwardSource::RegFile(v) | ForwardSource::ExMemAlu(v)
@@ -24,6 +25,7 @@ impl ForwardSource {
     }
 
     /// 若为转发命中（非寄存器文件）则返回 true。
+    #[allow(dead_code)]
     pub fn is_forward(&self) -> bool {
         !matches!(self, ForwardSource::RegFile(_))
     }
@@ -38,8 +40,10 @@ pub struct HazardResult {
     /// 冻结 ID/EX 锁存器（插入气泡 / NOP）
     pub stall_id: bool,
     /// 冲刷 IF/ID 锁存器（如分支预测错误）
+    #[allow(dead_code)]
     pub flush_if: bool,
     /// 冲刷 ID/EX 锁存器
+    #[allow(dead_code)]
     pub flush_id: bool,
     /// ID 阶段指令的 rs1 转发源
     pub fwd_src1: ForwardSource,

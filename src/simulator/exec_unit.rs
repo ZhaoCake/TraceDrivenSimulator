@@ -8,6 +8,7 @@
 /// 未来扩展：
 ///   - 乘法器：延迟=3，流水化=true
 ///   - 除法器：延迟=20，非流水化（结构冒险）
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct ExecUnit {
     /// 人类可读名称，用于调试/统计
@@ -20,6 +21,7 @@ pub struct ExecUnit {
     busy_until: u64,
 }
 
+#[allow(dead_code)]
 impl ExecUnit {
     /// 创建新的执行单元。
     pub fn new(name: &str, latency: u32, pipelined: bool) -> Self {

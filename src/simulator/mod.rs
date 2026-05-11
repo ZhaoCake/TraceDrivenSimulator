@@ -10,7 +10,7 @@ mod tests;
 use std::collections::{HashMap, VecDeque};
 use crate::trace::{OpType, TraceRecord};
 use latches::{IfIdLatch, IdExLatch, ExMemLatch, MemWbLatch, PipelineSnapshot};
-use exec_unit::ExecUnit;
+
 use lsu::Lsu;
 
 /// 性能仿真器核心结构体
@@ -34,6 +34,7 @@ pub struct Simulator {
     mw_latch: Option<MemWbLatch>,
 
     /// Load-Store Unit（建模访存时序）
+    #[allow(dead_code)]
     lsu: Lsu,
 
     /// 体系结构寄存器文件（32 个整数寄存器，x0 硬连线为 0）

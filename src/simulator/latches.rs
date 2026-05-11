@@ -38,6 +38,7 @@ pub struct PipelineSnapshot {
     pub em: Option<ExMemLatch>,
     pub mw: Option<MemWbLatch>,
     pub registers: [u64; 32],
+    #[allow(dead_code)]
     pub cycle: u64,
 }
 
