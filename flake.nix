@@ -18,6 +18,7 @@
             spike
             # RISC-V Cross Compiler
             pkgsCross.riscv32.buildPackages.gcc
+            dtc
 
             # Rust toolchain
             rustc
