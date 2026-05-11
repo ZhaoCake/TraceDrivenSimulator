@@ -27,6 +27,9 @@
             clippy
             rust-analyzer
 
+            # Rust standard library sources (for rust-analyzer)
+            rustPlatform.rustLibSrc
+
             # Useful development tools
             pkg-config
           ];
@@ -35,6 +38,10 @@
           SPIKE_PK = "${pkgs.spike}/share/spike/pk";
 
           shellHook = ''
+            # rust-analyzer (and older tooling) may rely on RUST_SRC_PATH to
+            # locate Rust's standard library sources in non-rustup toolchains.
+            export RUST_SRC_PATH="${pkgs.rustPlatform.rustLibSrc}"
+            
             echo "🛠️  TraceDrivenSimulator dev shell"
             echo "   spike:  $(spike --version 2>&1 | head -1 || echo 'available')"
             echo "   rustc:  $(rustc --version)"
