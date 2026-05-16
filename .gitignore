@@ -1,5 +1,6 @@
 .direnv/
 .claude/
 
-target/
+# C++ CMake 构建产物
+build/
 

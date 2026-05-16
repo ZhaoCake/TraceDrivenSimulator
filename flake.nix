@@ -1,5 +1,5 @@
 {
-  description = "TraceDrivenSimulator - RISC-V trace-driven simulator with Spike and Rust";
+  description = "TraceDrivenSimulator - RISC-V trace-driven simulator with C++17 and Spike";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -16,19 +16,18 @@
           packages = with pkgs; [
             # RISC-V ISA Simulator
             spike
+
             # RISC-V Cross Compiler
             pkgsCross.riscv32.buildPackages.gcc
             dtc
 
-            # Rust toolchain
-            rustc
-            cargo
-            rustfmt
-            clippy
-            rust-analyzer
+            # C++17 toolchain
+            cmake
+            gtest
+            gdb
 
-            # Rust standard library sources (for rust-analyzer)
-            rustPlatform.rustLibSrc
+            # IDE 支持 (clangd 语法解析)
+            clang-tools
 
             # Useful development tools
             pkg-config
@@ -38,14 +37,10 @@
           SPIKE_PK = "${pkgs.spike}/share/spike/pk";
 
           shellHook = ''
-            # rust-analyzer (and older tooling) may rely on RUST_SRC_PATH to
-            # locate Rust's standard library sources in non-rustup toolchains.
-            export RUST_SRC_PATH="${pkgs.rustPlatform.rustLibSrc}"
-            
             echo "🛠️  TraceDrivenSimulator dev shell"
             echo "   spike:  $(spike --version 2>&1 | head -1 || echo 'available')"
-            echo "   rustc:  $(rustc --version)"
-            echo "   cargo:  $(cargo --version)"
+            echo "   g++:    $(g++ --version | head -1)"
+            echo "   cmake:  $(cmake --version | head -1)"
           '';
         };
       }
