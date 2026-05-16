@@ -29,6 +29,9 @@
             # IDE 支持 (clangd 语法解析)
             clang-tools
 
+            # Task runner
+            just
+
             # Useful development tools
             pkg-config
           ];
