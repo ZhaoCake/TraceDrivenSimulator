@@ -1,5 +1,7 @@
 .direnv/
 .claude/
+.vscode/
+.cache/
 
 # C++ CMake 构建产物
 build/
