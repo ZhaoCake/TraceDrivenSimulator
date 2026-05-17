@@ -7,7 +7,8 @@
 /// 转发操作数值的来源类型
 enum class ForwardSourceKind {
     RegFile,    ///< 来自寄存器文件
-    ExMemAlu,   ///< 来自 EX/MEM 锁存器的 ALU 结果（最近结果，Load 除外）
+    ExResult,   ///< 来自同周期 EX 阶段预计算结果（de_latch 中非 Load 指令的 ALU 输出）
+    ExMemAlu,   ///< 来自 EX/MEM 锁存器的 ALU 结果（上一周期结果，Load 除外）
     MemWbAlu,   ///< 来自 MEM/WB 锁存器的 ALU 结果
     MemWbMem,   ///< 来自 MEM/WB 锁存器的访存加载结果
 };
@@ -26,6 +27,7 @@ struct ForwardSource {
 
     // 静态工厂方法
     static ForwardSource reg_file(uint64_t v) { return {ForwardSourceKind::RegFile, v}; }
+    static ForwardSource ex_result(uint64_t v) { return {ForwardSourceKind::ExResult, v}; }
     static ForwardSource ex_mem_alu(uint64_t v) { return {ForwardSourceKind::ExMemAlu, v}; }
     static ForwardSource mem_wb_alu(uint64_t v) { return {ForwardSourceKind::MemWbAlu, v}; }
     static ForwardSource mem_wb_mem(uint64_t v) { return {ForwardSourceKind::MemWbMem, v}; }
@@ -70,8 +72,9 @@ private:
     ///
     /// 优先级（硬件转发多路选择器顺序）：
     ///   1. x0 → 恒为 0（硬连线）
-    ///   2. EX/MEM 的 alu_result（最近结果，Load 除外 — 数据未就绪）
-    ///   3. MEM/WB 的 mem_result（Load）或 alu_result（其他）
-    ///   4. 寄存器文件（默认/回退）
+    ///   2. ID/EX 预计算（同周期 EX→ID 转发，非 Load 指令的 ALU 结果）
+    ///   3. EX/MEM 的 alu_result（上一周期结果，Load 除外 — 数据未就绪）
+    ///   4. MEM/WB 的 mem_result（Load）或 alu_result（其他）
+    ///   5. 寄存器文件（默认/回退）
     static ForwardSource resolve_forward(uint8_t rs, const PipelineSnapshot& snap);
 };

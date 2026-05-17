@@ -187,6 +187,45 @@ TEST(HazardTest, NoForwardWhenRsNotMatching) {
     EXPECT_FALSE(result.fwd_src2.is_forward()) << "x2 应来自寄存器文件";
 }
 
+/// 测试从同周期 EX 阶段预计算转发（de_latch 中非 Load 指令的 ALU 结果）
+TEST(HazardTest, ForwardFromExResult) {
+    auto producer = make_record(0x100, 0, 0, 1, OpType::IntAlu, 42);  // x1 = 42
+    auto consumer = make_record(0x104, 1, 0, 2, OpType::IntAlu, 84);  // 需要 x1
+
+    PipelineSnapshot snap(
+        IfIdLatch(consumer),                         // FD: 依赖 x1
+        IdExLatch(producer, 0, 0),                   // DE: 即将生产 x1=42
+        std::nullopt,                                 // EM: 空
+        std::nullopt,
+        std::array<uint64_t, 32>{},
+        0
+    );
+
+    auto result = HazardUnit::resolve(snap);
+    EXPECT_EQ(result.fwd_src1, ForwardSource::ex_result(42));
+    EXPECT_TRUE(result.fwd_src1.is_forward());
+}
+
+/// 测试转发优先级：同周期 EX 结果优先于 EX/MEM（更近的程序顺序）
+TEST(HazardTest, ForwardPriorityExResultOverExMem) {
+    auto newer = make_record(0x104, 0, 0, 1, OpType::IntAlu, 200);  // x1 = 200 (de_latch)
+    auto older = make_record(0x100, 0, 0, 1, OpType::IntAlu, 100);  // x1 = 100 (em_latch)
+    auto consumer = make_record(0x108, 1, 0, 5, OpType::IntAlu, 300);
+
+    PipelineSnapshot snap(
+        IfIdLatch(consumer),
+        IdExLatch(newer, 0, 0),                      // DE: 较新的 x1=200
+        ExMemLatch(older, 100),                       // EM: 较旧的 x1=100
+        std::nullopt,
+        std::array<uint64_t, 32>{},
+        0
+    );
+
+    auto result = HazardUnit::resolve(snap);
+    // 应取 ExResult (200) 而非 ExMemAlu (100)
+    EXPECT_EQ(result.fwd_src1, ForwardSource::ex_result(200));
+}
+
 /// 测试无转发命中时回退到寄存器文件中的值
 TEST(HazardTest, FallbackToRegisterFile) {
     auto consumer = make_record(0x100, 3, 4, 1, OpType::IntAlu, 42);

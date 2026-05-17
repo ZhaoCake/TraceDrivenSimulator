@@ -1,4 +1,5 @@
 #include "simulator/hazard.h"
+#include "simulator/alu.h"
 
 HazardResult HazardUnit::resolve(const PipelineSnapshot& snapshot) {
     HazardResult result;
@@ -41,17 +42,32 @@ ForwardSource HazardUnit::resolve_forward(uint8_t rs, const PipelineSnapshot& sn
         return ForwardSource::reg_file(0);
     }
 
-    // 优先级 1：EX/MEM — 最近的结果。
-    // 重要：跳过 Load 指令 — 其数据在 MEM 完成前未就绪。
-    // EX/MEM 中 Load 的 alu_result 字段存的是有效地址，而非数据。
-    if (snap.em.has_value()) {
-        const auto& em = snap.em.value();
-        if (em.record.rd == rs && em.record.op_type != OpType::Load) {
-            return ForwardSource::ex_mem_alu(em.alu_result);
+    // 优先级 1：ID/EX 预计算 — 同周期 EX→ID 转发。
+    // de_latch 中的非 Load 指令将在本周期 EX 阶段计算完成，其结果可旁路到 ID 阶段。
+    // Load 在 EX 阶段仅计算有效地址，数据尚未就绪，因此排除。
+    if (snap.de.has_value()) {
+        const auto& de = snap.de.value();
+        if (de.record.rd == rs && de.record.op_type != OpType::Load) {
+            uint64_t ex_result = Alu::compute(de.record, de.rs1_val, de.rs2_val);
+            return ForwardSource::ex_result(ex_result);
         }
     }
 
-    // 优先级 2：MEM/WB — 前一个结果。
+    // 优先级 2：EX/MEM — 上一周期的结果。
+    // 包括 Load：MEM 阶段先于 ID 执行（反向顺序），Load 数据在本周期进入 mw_latch，
+    // ID 阶段可旁路拿到 mem_result。
+    if (snap.em.has_value()) {
+        const auto& em = snap.em.value();
+        if (em.record.rd == rs) {
+            if (em.record.op_type == OpType::Load) {
+                return ForwardSource::mem_wb_mem(em.record.rd_val);
+            } else {
+                return ForwardSource::ex_mem_alu(em.alu_result);
+            }
+        }
+    }
+
+    // 优先级 3：MEM/WB — 前一个结果。
     if (snap.mw.has_value()) {
         const auto& mw = snap.mw.value();
         if (mw.record.rd == rs) {
@@ -63,6 +79,6 @@ ForwardSource HazardUnit::resolve_forward(uint8_t rs, const PipelineSnapshot& sn
         }
     }
 
-    // 优先级 3：寄存器文件 — 默认来源。
+    // 优先级 4：寄存器文件 — 默认来源。
     return ForwardSource::reg_file(snap.registers[rs]);
 }

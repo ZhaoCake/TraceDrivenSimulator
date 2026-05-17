@@ -43,13 +43,13 @@ public:
     ///
     /// 第一相（快照）：捕获周期开始时的不可变流水线状态。
     ///
-    /// 第二相（组合逻辑）：HazardUnit 检测 Load-Use 冒险
-    ///   （纯函数，无状态）。Alu 与 LSU 计算待完成结果。
+    /// 第二相（组合逻辑）：HazardUnit 检测 Load-Use 冒险并解析转发源
+    ///   （纯函数，无状态，包含同周期 EX→ID 预计算转发）。
     ///
-    /// 第三相（时序逻辑）：按反向顺序提交流水线推进
-    ///   （WB → MEM → EX → ID → IF）。反向顺序实现同周期
-    ///   EX→ID 结果转发：ID 阶段读取刚更新的 EM/MW 锁存器。
-    ///   HazardResult 控制停顿（冻结 IF，向 ID 插入气泡）。
+    /// 第三相（时序逻辑）：按反向顺序提交锁存器转移
+    ///   （WB → MEM → EX → ID → IF）。反向顺序避免锁存器
+    ///   写后读冲突。操作数转发源由 HazardResult.fwd_src 提供，
+    ///   在 ID 阶段直接消费。
     void step_cycle();
 
     /// 打印模拟统计汇总日志
@@ -81,14 +81,4 @@ private:
     /// 流水线停顿标志：为 true 时 IF 冻结、ID 插入气泡
     bool stall_ = false;
 
-    /// 组合转发网络：解析源寄存器的值。
-    ///
-    /// 读取刚更新的 em_latch 和 mw_latch（在 EX/MEM 提交之后）
-    /// 以建模 EX 到 ID 的同周期结果转发。
-    ///
-    /// 优先级（硬件转发多路选择器顺序）：
-    ///   1. EX/MEM 的 alu_result（最近结果，Load 除外 — 数据尚未就绪）
-    ///   2. MEM/WB 的 mem_result（Load）或 alu_result（非 Load）
-    ///   3. 寄存器文件（默认）
-    uint64_t forward_value(uint8_t rs);
 };

@@ -60,7 +60,7 @@ void Simulator::step_cycle() {
     // ── 第二相（组合逻辑）──
     HazardResult hazard = HazardUnit::resolve(snap);
 
-    // ── 第三相（时序逻辑）：反向提交实现同周期转发 ──
+    // ── 第三相（时序逻辑）：反向提交管理锁存器转移 ──
 
     // WB：将 MEM/WB 锁存器的结果写回寄存器文件。
     // 使用快照（克隆），因为 WB 读取不可变视图。
@@ -108,13 +108,15 @@ void Simulator::step_cycle() {
     } else {
         // 清除上一周期的停顿标志。
         stall_ = false;
-        // 推进 fd → de（含操作数转发）。
+        // 推进 fd → de（操作数来自 HazardUnit 解析的转发源）。
         if (fd_latch_.has_value()) {
             auto fd = std::move(fd_latch_.value());
-            uint64_t rs1_val = forward_value(fd.record.rs1);
-            uint64_t rs2_val = forward_value(fd.record.rs2);
+            uint64_t rs1_val = hazard.fwd_src1.get_value();
+            uint64_t rs2_val = hazard.fwd_src2.get_value();
             de_latch_ = IdExLatch(fd.record, rs1_val, rs2_val);
             fd_latch_ = std::nullopt;
+            if (hazard.fwd_src1.is_forward()) forward_count += 1;
+            if (hazard.fwd_src2.is_forward()) forward_count += 1;
         } else {
             de_latch_ = std::nullopt;
         }
@@ -129,40 +131,6 @@ void Simulator::step_cycle() {
     }
 
     cycle += 1;
-}
-
-// ── 转发网络 ──
-
-uint64_t Simulator::forward_value(uint8_t rs) {
-    // x0 硬连线为 0
-    if (rs == 0) {
-        return 0;
-    }
-
-    // 优先级 1：EX/MEM（最近的非 Load 结果）
-    if (em_latch_.has_value()) {
-        const auto& em = em_latch_.value();
-        if (em.record.rd == rs && em.record.op_type != OpType::Load) {
-            forward_count += 1;
-            return em.alu_result;
-        }
-    }
-
-    // 优先级 2：MEM/WB
-    if (mw_latch_.has_value()) {
-        const auto& mw = mw_latch_.value();
-        if (mw.record.rd == rs) {
-            forward_count += 1;
-            if (mw.record.op_type == OpType::Load) {
-                return mw.mem_result;
-            } else {
-                return mw.alu_result;
-            }
-        }
-    }
-
-    // 优先级 3：寄存器文件
-    return registers_[rs];
 }
 
 // ── 统计打印 ──
